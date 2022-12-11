@@ -1,5 +1,10 @@
 create schema if not exists kontora_schema;
 
+create table kontora_schema.role
+(
+    id   bigint       not null primary key,
+    "name" varchar(100) not null
+);
 create table kontora_schema."user"
 (
     id         bigint       not null primary key,
@@ -10,11 +15,6 @@ create table kontora_schema."user"
     role_id    bigint       not null references kontora_schema.role
 );
 
-create table kontora_schema.role
-(
-    id   bigint       not null primary key,
-    name varchar(100) not null
-);
 
 
 create table kontora_schema.hairdresser

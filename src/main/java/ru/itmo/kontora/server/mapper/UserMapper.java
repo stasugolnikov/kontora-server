@@ -12,7 +12,7 @@ public interface UserMapper {
     @Mapping(target = "roleDto", source = "role")
     @Mapping(target = "username", source = "username")
     @Mapping(target = "password", source = "password")
-    UserDto fromEntity(User teacher);
+    UserDto fromEntity(User user);
 
     @Mapping(target = "id", source = "id")
     @Mapping(target = "fullName", source = "fullName")
