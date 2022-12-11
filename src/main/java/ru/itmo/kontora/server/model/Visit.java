@@ -10,25 +10,30 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.sql.Timestamp;
 
 @Entity
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name = "service_info", schema = "kontora_schema")
-public class ServiceInfo {
+@Table(name = "user", schema = "kontora_schema")
+public class Visit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "price")
-    private Long price;
+    @Column(name = "user_id")
+    private Long userId;
 
-    @Column(name = "service_id")
-    private Long serviceId;
+    @Column(name = "service_info_id")
+    private Long serviceInfoId;
 
-    @Column(name = "hairdresser_id")
-    private Long hairdresserId;
+    @Column(name = "comment")
+    private String comment;
+
+    @Column(name = "date")
+    private Timestamp date;
+
 
 }
