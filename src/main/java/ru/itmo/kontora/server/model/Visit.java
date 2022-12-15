@@ -35,5 +35,4 @@ public class Visit {
     @Column(name = "date")
     private Timestamp date;
 
-
 }
