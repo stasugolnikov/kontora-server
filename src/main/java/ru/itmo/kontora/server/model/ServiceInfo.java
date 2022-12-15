@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -25,10 +27,13 @@ public class ServiceInfo {
     @Column(name = "price")
     private Long price;
 
-    @Column(name = "service_id")
-    private Long serviceId;
 
-    @Column(name = "hairdresser_id")
-    private Long hairdresserId;
+    @ManyToOne
+    @JoinColumn(name = "service_id")
+    private Service service;
+
+    @ManyToOne
+    @JoinColumn(name = "hairdresser_id")
+    private Hairdresser hairdresser;
 
 }
