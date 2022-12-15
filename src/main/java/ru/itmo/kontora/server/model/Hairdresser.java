@@ -9,6 +9,7 @@ import org.hibernate.annotations.FetchMode;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -37,7 +38,7 @@ public class Hairdresser {
     @Column(name = "description")
     private String description;
 
-    @OneToMany(mappedBy = "hairdresserId", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "hairdresser", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @Fetch(FetchMode.SUBSELECT)
     private Set<ServiceInfo> serviceInfos = new HashSet<>();
 }
