@@ -16,7 +16,7 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name = "user", schema = "kontora_schema")
+@Table(name = "visit", schema = "kontora_schema")
 public class Visit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
