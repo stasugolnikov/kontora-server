@@ -8,6 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.itmo.kontora.server.dto.UserDto;
+import ru.itmo.kontora.server.exception.NotAuthorizedException;
 import ru.itmo.kontora.server.mapper.UserMapper;
 import ru.itmo.kontora.server.model.User;
 import ru.itmo.kontora.server.repository.UserRepository;
@@ -30,10 +31,18 @@ public class UserService implements UserDetailsService {
     public UserDto register(UserDto userDto) {
         User user = userMapper.fromDto(userDto);
         user.setRole(roleService.getByName("USER"));
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         user = userRepository.save(user);
         return userMapper.fromEntity(user);
 
+    }
+
+    public UserDto checkUser(UserDto userDto) {
+        UserDetails user = loadUserByUsername(userDto.getUsername());
+        if (passwordEncoder.encode(userDto.getPassword()).equals(user.getPassword())) {
+            throw new NotAuthorizedException("User not authorized");
+        }
+        return userDto;
     }
 
     public User findById(Long id) {
