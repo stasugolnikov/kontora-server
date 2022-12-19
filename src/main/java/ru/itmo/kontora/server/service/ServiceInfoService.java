@@ -2,11 +2,8 @@ package ru.itmo.kontora.server.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.itmo.kontora.server.dto.HairdresserDto;
 import ru.itmo.kontora.server.dto.ServiceInfoDto;
-import ru.itmo.kontora.server.mapper.HairdresserMapper;
 import ru.itmo.kontora.server.mapper.ServiceInfoMapper;
-import ru.itmo.kontora.server.repository.HairdresserRepository;
 import ru.itmo.kontora.server.repository.ServiceInfoRepository;
 
 import javax.transaction.Transactional;

@@ -14,9 +14,7 @@ import ru.itmo.kontora.server.model.User;
 import ru.itmo.kontora.server.repository.UserRepository;
 import ru.itmo.kontora.server.security.UserDetailsImpl;
 
-import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -39,44 +37,10 @@ public class UserService implements UserDetailsService {
 
     public UserDto checkUser(UserDto userDto) {
         UserDetails user = loadUserByUsername(userDto.getUsername());
-        if (passwordEncoder.encode(userDto.getPassword()).equals(user.getPassword())) {
+        if (!passwordEncoder.matches(userDto.getPassword(), user.getPassword())) {
             throw new NotAuthorizedException("User not authorized");
         }
         return userDto;
-    }
-
-    public User findById(Long id) {
-        return userRepository
-                .findById(id)
-                .orElseThrow(() -> {
-                    throw new EntityNotFoundException("Teacher not found by id=" + id);
-                });
-    }
-
-    public UserDto getById(Long id) {
-        return userMapper.fromEntity(findById(id));
-    }
-
-    @Transactional
-    public List<UserDto> getAll() {
-        return userRepository
-                .findAll()
-                .stream()
-                .map(userMapper::fromEntity)
-                .toList();
-    }
-
-    @Transactional
-    public UserDto update(Long id, UserDto userDto) {
-        User user = findById(id);
-        user.setFullName(userDto.getFullName());
-        user = userRepository.save(user);
-        return userMapper.fromEntity(user);
-    }
-
-    @Transactional
-    public void deleteById(Long id) {
-        userRepository.deleteById(id);
     }
 
     @Override
@@ -85,7 +49,7 @@ public class UserService implements UserDetailsService {
         User user = userRepository
                 .findByUsername(username)
                 .orElseThrow(() -> {
-                    throw new UsernameNotFoundException("Not found Teacher with username: " + username);
+                    throw new UsernameNotFoundException(String.format("Not found Teacher with username: %s", username));
                 });
         return new UserDetailsImpl(user);
     }

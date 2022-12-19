@@ -3,10 +3,7 @@ package ru.itmo.kontora.server.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.itmo.kontora.server.dto.ServiceDto;
-import ru.itmo.kontora.server.dto.ServiceInfoDto;
-import ru.itmo.kontora.server.mapper.ServiceInfoMapper;
 import ru.itmo.kontora.server.mapper.ServiceMapper;
-import ru.itmo.kontora.server.repository.ServiceInfoRepository;
 import ru.itmo.kontora.server.repository.ServiceRepository;
 
 import javax.transaction.Transactional;

@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 import ru.itmo.kontora.server.model.Visit;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface VisitRepository extends JpaRepository<Visit, Long> {

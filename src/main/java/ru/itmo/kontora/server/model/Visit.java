@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.sql.Timestamp;
+import java.util.Objects;
 
 @Entity
 @NoArgsConstructor
@@ -35,4 +36,16 @@ public class Visit {
     @Column(name = "date")
     private Timestamp date;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Visit visit = (Visit) o;
+        return id.equals(visit.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }

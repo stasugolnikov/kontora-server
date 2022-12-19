@@ -54,7 +54,7 @@ create table kontora_schema.visit
 );
 
 insert into kontora_schema."user" (full_name, username, "password", role_id)
-values ('admin', 'admin', '$2a$12$0t9gr1NRKOEwkbx6UZhUf.4Gcj7AEW0aQHIF4mg39qe0jpD1JQ5C6', 1);
+values ('admin', 'admin', '$2a$12$3wnfWqHQsUyd8A8.bpVp4O5GQIyiUqEj4sWvb8Enzmn5DqEheP6Py', 1);
 
 insert into kontora_schema.hairdresser (id, full_name)
 values (1, 'Егор Савковский'),
